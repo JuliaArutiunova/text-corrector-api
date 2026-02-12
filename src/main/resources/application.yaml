@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: text-corrector-api
+
+  jpa:
+    show-sql: true
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+
+  liquibase:
+    default-schema: app
+
+server:
+  port: 8020

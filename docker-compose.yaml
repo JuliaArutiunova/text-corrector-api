@@ -1,0 +1,27 @@
+name: text-corrector
+services:
+  text-corrector-db:
+    image: postgres:17-alpine
+    container_name: text-corrector-postgres-db
+    environment:
+      POSTGRES_DB: text_corrector_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d text_corrector_db" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: on-failure:2
+    networks:
+      - app-net
+
+
+volumes:
+  db-data:
+
+networks:
+  app-net:
+    driver: bridge
