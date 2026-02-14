@@ -5,3 +5,5 @@ databaseChangeLog:
       file: db/changelog/sql/002_create_index.sql
   - include:
       file: db/changelog/sql/003_set_updated_at_defaults.sql
+  - include:
+      file: db/changelog/sql/004_add_check_constraints.sql
