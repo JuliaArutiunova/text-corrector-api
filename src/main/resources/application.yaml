@@ -19,3 +19,4 @@ speller:
   method-path: /checkTexts
   connect-timeout: 2s
   read-timeout: 5s
+  text-limit: 10000
