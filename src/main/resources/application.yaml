@@ -1,6 +1,8 @@
 spring:
   application:
     name: text-corrector-api
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
 
   jpa:
     show-sql: true
@@ -24,3 +26,7 @@ speller:
   connect-timeout: 2s
   read-timeout: 5s
   text-limit: 10000
+
+scheduler:
+  delay: 5000
+  batch-size: 10
