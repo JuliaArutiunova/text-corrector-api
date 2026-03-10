@@ -9,8 +9,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,8 +26,6 @@ import java.util.UUID;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class TaskEntity {
     @Id
     @UuidGenerator
@@ -38,15 +34,15 @@ public class TaskEntity {
     @Column(nullable = false, updatable = false)
     private UUID id;
 
-    @Column(name = "original_text", nullable = false, updatable = false)
+    @Column(name = "original_text", nullable = false, updatable = false, columnDefinition = "text")
     private String originalText;
 
-    @Column(name = "corrected_text")
+    @Column(name = "corrected_text", columnDefinition = "text")
     private String correctedText;
 
     @Enumerated(EnumType.STRING)
     @Column(length = 20, nullable = false)
-    private TaskStatus status;
+    private TaskStatus status = TaskStatus.NEW;
 
     @Enumerated(EnumType.STRING)
     @Column(length = 2, nullable = false, updatable = false)
