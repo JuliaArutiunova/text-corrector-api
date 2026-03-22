@@ -37,4 +37,16 @@ public class ErrorHandler {
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> handleGenericException(Exception e,
+                                                                HttpServletRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse(
+                "Internal server error",
+                ErrorCode.INTERNAL_SERVER_ERROR.getCode(),
+                OffsetDateTime.now(),
+                request.getRequestURI()
+        );
+        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
