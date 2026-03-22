@@ -6,7 +6,8 @@ import org.springframework.http.HttpStatus;
 public enum ErrorCode {
     TASK_NOT_FOUND(40401, HttpStatus.NOT_FOUND, "Task with id: %s not found"),
     VALIDATION_ERROR(40001, HttpStatus.BAD_REQUEST, "Validation failed"),
-    EXTERNAL_API_ERROR(50201, HttpStatus.BAD_GATEWAY, "External API error");
+    EXTERNAL_API_ERROR(50201, HttpStatus.BAD_GATEWAY, "External API error"),
+    INTERNAL_SERVER_ERROR(50001, HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error");
 
     private final int code;
     private final HttpStatus httpStatus;
