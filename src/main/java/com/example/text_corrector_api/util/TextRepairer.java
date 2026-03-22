@@ -10,6 +10,17 @@ import java.util.List;
 @Component
 @Slf4j
 public class TextRepairer {
+    /**
+     * Applies spelling corrections to the original text based on Yandex Speller response.
+     * <p>
+     * Corrections are applied in reverse order to preserve character positions when using
+     * {@link StringBuilder}. This prevents index shifts that would occur when applying
+     * replacements from the beginning of the string.
+     *
+     * @param originalText the source text to correct
+     * @param errors spelling errors detected by Yandex Speller API
+     * @return corrected text, or the original text if no errors or corrections are applicable
+     */
 
     public String applyCorrections(String originalText, List<SpellerErrorDto> errors) {
         if (originalText == null || originalText.isEmpty() || errors == null || errors.isEmpty()) {

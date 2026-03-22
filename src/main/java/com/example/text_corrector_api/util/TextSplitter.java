@@ -12,6 +12,18 @@ import java.util.regex.Pattern;
 public class TextSplitter {
     private static final Pattern BOUNDARY_PATTERN = Pattern.compile("[.,!?;:\\n]");
 
+    /**
+     * Splits text into chunks not exceeding the specified limit, preserving natural boundaries.
+     * <p>
+     * Strategy:
+     * - Tries to split at sentence boundaries: ., !, ?, ;, :, \n
+     * - If no boundary found, falls back to the last space within the limit
+     * - Otherwise, cuts at the exact limit
+     *
+     * @param text  the text to split
+     * @param limit maximum chunk length in characters
+     * @return a list of text chunks, or an empty list if input is null
+     */
     public List<String> split(String text, int limit) {
         if (text == null || text.length() <= limit) {
             return Collections.singletonList(text);
