@@ -32,6 +32,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.liquibase:liquibase-core")
 	implementation("net.lbruun.springboot:preliquibase-spring-boot-starter:1.6.1")
 	compileOnly("org.projectlombok:lombok")
@@ -60,4 +61,8 @@ tasks.withType<JavaCompile> {
             "-Amapstruct.defaultComponentModel=spring",
             "-Amapstruct.unmappedTargetPolicy=ERROR"
     ))
+}
+
+tasks.bootJar {
+	archiveFileName.set("${project.name}.jar")
 }
