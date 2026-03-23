@@ -17,6 +17,30 @@ services:
     restart: on-failure:2
     networks:
       - app-net
+  text-corrector-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: text-corrector-api
+    ports:
+      - "8020:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://text-corrector-db:5432/text_corrector_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    depends_on:
+      text-corrector-db:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://localhost:8080/actuator/health || exit 1" ]
+      interval: 20s
+      timeout: 3s
+      start_period: 10s
+      retries: 3
+    restart: on-failure:1
+    networks:
+      - app-net
 
 
 volumes:
